@@ -1,0 +1,23 @@
+<launch>
+  <arg name="x1" default="-1"/>
+  <arg name="y1" default="-3"/>
+  <arg name="z1" default="0"/>
+  <!-- <node
+    name="tf_footprint_base"
+    pkg="tf"
+    type="static_transform_publisher"
+    args="0 0 0 0 0 0 base_link base_footprint 40" /> -->
+  <node
+    name="spawn_model"  
+    pkg="gazebo_ros"
+    type="spawn_model"
+    args="-file $(find gate_system)/urdf/gate_system.urdf -urdf -model gate_system -x $(arg x1) -y $(arg y1) -z $(arg z1)"
+    output="screen" />
+  <!-- <node
+    name="fake_joint_calibration"
+    pkg="rostopic"
+    type="rostopic"
+    args="pub /calibrated std_msgs/Bool true" /> -->
+  
+  
+</launch>
