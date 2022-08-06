@@ -35,6 +35,7 @@ class drone(object):
             else:
                 self.rate.sleep()
 
+#won't take off sometimes bcs of RNG
     def takeoff(self):
         print("Taking off...")
         self.takeoff_pub.publish(self.takeoff_msg)
@@ -43,14 +44,16 @@ class drone(object):
         self.takeoff_pub.publish(self.takeoff_msg)
         print(".")
         sleep(1)
-
-    def naik_dikit(self):
+        self.takeoff_pub.publish(self.takeoff_msg)
+        print(".")
+        sleep(1)
         print("naik dikit")
         vz = 0.5
         self.gerak(0, 0, vz)
         sleep(2.5)
         vz = 0
         self.gerak(0, 0, vz)
+        
 
     def land(self):
         self.land_pub.publish(self.land_msg)
@@ -95,7 +98,7 @@ class drone(object):
         cam_bawah = self.bridge.imgmsg_to_cv2(data, "bgr8")
         cam_bawah = cv2.add(cam_bawah, np.array([-50.0]))
         # cv2.imshow("Cam Bawah", cam_bawah)
-        cv2.waitKey(1) & 0xFF
+        #cv2.waitKey(1) & 0xFF
 
     def gawang(self):
         global cam_depan
@@ -112,8 +115,8 @@ class drone(object):
             blade = cv2.inRange(hsv, orenji_a, orenji_b)
             kernel = np.ones((5, 5), np.uint8)
             mask = cv2.erode(mask, kernel)
-            cv2.line(frame, (280, 240), (360, 240), (255, 0, 0), 2)
-            cv2.line(frame, (320, 280), (320, 200), (255, 0, 0), 2)
+            cv2.line(frame, (280, 175), (360, 175), (255, 0, 0), 2)
+            cv2.line(frame, (320, 135), (320, 215), (255, 0, 0), 2)
             contours, _ = cv2.findContours(mask, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
             for cnt in contours:
                 luas = [cv2.contourArea(contour) for contour in contours]
@@ -149,7 +152,7 @@ class drone(object):
                     self.gerak(0, 0, 0)
 
             cv2.imshow("frame", frame)
-            if cv2.waitKey(1) & 0xFF == 27:
+            if cv2.waitKey(100) & 0xFF == 27:
                 break
             # cap.release()
         cv2.destroyAllWindows()
@@ -163,9 +166,6 @@ if __name__ == "__main__":
     d = drone()
     print("start")
     d.takeoff()
-    d.naik_dikit()
     d.maju_depan()
     d.gawang()
 
-# kind of error in the gawang def : Gdk-Message: 16:47:00.380: Cam Depan: Fatal IO error 11 (Resource temporarily unavailable) on X server :0.
-# second error : raw:6814): Gdk-ERROR **: 15:01:29.729: The program 'raw' received an X Window System error.
