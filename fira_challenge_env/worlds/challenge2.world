@@ -1,0 +1,581 @@
+<sdf version="1.7">
+  <world name="default">
+    <light name="sun" type="directional">
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.1 0.1 0.1 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.5 -1</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <model name="ground_plane">
+      <static>1</static>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode />
+              </torsional>
+            </friction>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name="visual">
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <enable_wind>0</enable_wind>
+      </link>
+    </model>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type="adiabatic" />
+    <physics name="default_physics" default="0" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>200 200 200 1</ambient>
+      <shadows>1</shadows>
+      <sky>
+        <clouds>
+          <speed>12</speed>
+        </clouds>
+      </sky>
+      <background>0.7 0.7 0.7 1</background>
+    </scene>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <state world_name="default">
+      <sim_time>247 135000000</sim_time>
+      <real_time>56 686968111</real_time>
+      <wall_time>1660184072 804531676</wall_time>
+      <iterations>55393</iterations>
+      <model name="gate_system">
+        <pose>-1 -3 -0 -0 -0 -0</pose>
+        <scale>1 1 1</scale>
+        <link name="base_link">
+          <pose>-1 -3 -0 -0 -0 -0</pose>
+          <velocity>-1e-06 -0 0 0 -0 0</velocity>
+          <acceleration>-0 0 0 0 -1e-06 0</acceleration>
+          <wrench>-0 0 0 0 -0 0</wrench>
+        </link>
+        <link name="rotating_link">
+          <pose>0.031104 -5.4707 2.523 -2.96933 -0 1.5708</pose>
+          <velocity>0.000776 -0 -0.000316 -3.14158 -0.691561 -3.14159</velocity>
+          <acceleration>-1.54206 -5e-06 0.652586 0.00023 -0 -9.5e-05</acceleration>
+          <wrench>-0.154206 -0 0.065259 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name="ground_plane">
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name="link">
+          <pose>0 0 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name="sjtu_drone">
+        <pose>4.9e-05 -0.00015 0.039998 -1.1e-05 5e-06 -1.57201</pose>
+        <scale>1 1 1</scale>
+        <link name="base_link">
+          <pose>4.9e-05 -0.00015 0.039998 -1.1e-05 5e-06 -1.57201</pose>
+          <velocity>0.000652 -0.000203 -0.003184 0.005089 0.016284 2e-06</velocity>
+          <acceleration>0.30752 -0.250303 -5.97443 -0.025714 1.39904 -0.000195</acceleration>
+          <wrench>0.454206 -0.369697 -8.82423 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name="take_off_marker">
+        <pose>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name="take_off_marker_link">
+          <pose>0 0 0.03 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name="take_off_marker_clone">
+        <pose>-0.007196 -11.0248 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name="take_off_marker_link">
+          <pose>-0.007196 -11.0248 0.03 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <light name="sun">
+        <pose>0 0 10 0 -0 0</pose>
+      </light>
+    </state>
+    <model name="take_off_marker">
+      <link name="take_off_marker_link">
+        <pose>0 0 0.03 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <inertial>
+          <mass>1</mass>
+          <pose>0 0 0.03 0 -0 0</pose>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <visual name="take_off_marker_visual">
+          <geometry>
+            <mesh>
+              <uri>model://H.dae</uri>
+            </mesh>
+          </geometry>
+          <pose>0 0 0 0 -0 0</pose>
+          <cast_shadows>1</cast_shadows>
+          <transparency>0</transparency>
+          <material>
+            <shader type="vertex">
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+        </visual>
+        <enable_wind>0</enable_wind>
+      </link>
+      <static>1</static>
+      <allow_auto_disable>1</allow_auto_disable>
+    </model>
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>-0.410356 -16.4544 24.674 0 1.15564 1.40421</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    <wind />
+    <model name="sjtu_drone">
+      <plugin name="simple_drone" filename="libplugin_drone.so">
+        <bodyName>base_link</bodyName>
+        <imuTopic>/drone/imu</imuTopic>
+        <rollpitchProportionalGain>10.0</rollpitchProportionalGain>
+        <rollpitchDifferentialGain>5.0</rollpitchDifferentialGain>
+        <rollpitchLimit>0.5</rollpitchLimit>
+        <yawProportionalGain>0.0</yawProportionalGain>
+        <yawDifferentialGain>0.0</yawDifferentialGain>
+        <yawLimit>0.0</yawLimit>
+        <velocityXYProportionalGain>5.0</velocityXYProportionalGain>
+        <velocityXYDifferentialGain>2.3</velocityXYDifferentialGain>
+        <velocityXYLimit>2</velocityXYLimit>
+        <velocityZProportionalGain>5.0</velocityZProportionalGain>
+        <velocityZDifferentialGain>1.0</velocityZDifferentialGain>
+        <velocityZLimit>-1</velocityZLimit>
+        <positionXYProportionalGain>1.1</positionXYProportionalGain>
+        <positionXYDifferentialGain>0.0</positionXYDifferentialGain>
+        <positionXYIntegralGain>0.0</positionXYIntegralGain>
+        <positionXYLimit>5</positionXYLimit>
+        <positionZProportionalGain>1.0</positionZProportionalGain>
+        <positionZDifferentialGain>0.2</positionZDifferentialGain>
+        <positionZLimit>-1</positionZLimit>
+        <maxForce>30</maxForce>
+        <motionSmallNoise>0.05</motionSmallNoise>
+        <motionDriftNoise>0.03</motionDriftNoise>
+        <motionDriftNoiseTime>5.0</motionDriftNoiseTime>
+        <robotNamespace>/</robotNamespace>
+      </plugin>
+      <link name="base_link">
+        <inertial>
+          <mass>1.477</mass>
+          <pose>0 0 0 0 -0 0</pose>
+          <inertia>
+            <ixx>0.1152</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>0.1152</iyy>
+            <iyz>0</iyz>
+            <izz>0.218</izz>
+          </inertia>
+        </inertial>
+        <visual name="visual">
+          <geometry>
+            <mesh>
+              <uri>model://sjtu_drone/quadrotor_4.dae</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <collision name="collision">
+          <geometry>
+            <mesh>
+              <uri>model://sjtu_drone/quadrotor_4.dae</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <bounce />
+            <friction>
+              <torsional>
+                <ode />
+              </torsional>
+              <ode />
+            </friction>
+          </surface>
+        </collision>
+        <gravity>1</gravity>
+        <sensor name="sensor_imu" type="imu">
+          <always_on>1</always_on>
+          <update_rate>100</update_rate>
+          <pose>0 0 0 0 -0 0</pose>
+          <plugin name="ros_imu" filename="libplugin_ros_imu.so">
+            <robotNamespace>/</robotNamespace>
+          </plugin>
+          <imu>
+            <angular_velocity>
+              <x>
+                <noise type="gaussian">
+                  <mean>0</mean>
+                  <stddev>0</stddev>
+                </noise>
+              </x>
+              <y>
+                <noise type="gaussian">
+                  <mean>0</mean>
+                  <stddev>0</stddev>
+                </noise>
+              </y>
+              <z>
+                <noise type="gaussian">
+                  <mean>0</mean>
+                  <stddev>0</stddev>
+                </noise>
+              </z>
+            </angular_velocity>
+            <linear_acceleration>
+              <x>
+                <noise type="gaussian">
+                  <mean>0</mean>
+                  <stddev>0</stddev>
+                </noise>
+              </x>
+              <y>
+                <noise type="gaussian">
+                  <mean>0</mean>
+                  <stddev>0</stddev>
+                </noise>
+              </y>
+              <z>
+                <noise type="gaussian">
+                  <mean>0</mean>
+                  <stddev>0</stddev>
+                </noise>
+              </z>
+            </linear_acceleration>
+          </imu>
+        </sensor>
+        <sensor name="sensor_sonar" type="sonar">
+          <always_on>1</always_on>
+          <visualize>0</visualize>
+          <update_rate>100</update_rate>
+          <pose>0.5 0 0.3 3e-06 1.57079 3.14159</pose>
+          <plugin name="ros_sonar" filename="libplugin_ros_sonar.so">
+            <robotNamespace>/</robotNamespace>
+          </plugin>
+          <sonar>
+            <min>0</min>
+            <max>5</max>
+            <radius>1.33975</radius>
+          </sonar>
+        </sensor>
+        <sensor name="front_camera" type="camera">
+          <camera>
+            <horizontal_fov>2.09</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>360</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.005</stddev>
+            </noise>
+          </camera>
+          <pose>0.2 0 0 0 -0 0</pose>
+          <always_on>1</always_on>
+          <update_rate>60</update_rate>
+          <visualize>1</visualize>
+          <plugin name="front_camera" filename="libplugin_ros_cam.so">
+            <imageTopicName>/drone/front_camera/image_raw</imageTopicName>
+            <robotNamespace>/</robotNamespace>
+          </plugin>
+        </sensor>
+        <sensor name="down_camera" type="camera">
+          <camera>
+            <horizontal_fov>1.047</horizontal_fov>
+            <image>
+              <width>640</width>
+              <height>360</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.1</near>
+              <far>100</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.005</stddev>
+            </noise>
+          </camera>
+          <pose>0 0 0 3.14159 1.57079 3.14159</pose>
+          <always_on>1</always_on>
+          <update_rate>15</update_rate>
+          <visualize>1</visualize>
+          <plugin name="down_camera" filename="libplugin_ros_cam.so">
+            <imageTopicName>/drone/down_camera/image_raw</imageTopicName>
+            <robotNamespace>/</robotNamespace>
+          </plugin>
+        </sensor>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>0 0 0.04 0 -0 -1.57319</pose>
+    </model>
+    <model name="gate_system">
+      <joint name="fixed" type="fixed">
+        <pose relative_to="__model__">0 0 0 0 -0 0</pose>
+        <parent>world</parent>
+        <child>base_link</child>
+      </joint>
+      <link name="base_link">
+        <pose relative_to="fixed">0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>1.0311 -2.5557 2.3905 0 -0 0</pose>
+          <mass>1100.87</mass>
+          <inertia>
+            <ixx>0.037259</ixx>
+            <ixy>2.1212e-19</ixy>
+            <ixz>8.3317e-20</ixz>
+            <iyy>0.0024207</iyy>
+            <iyz>-0.0078999</iyz>
+            <izz>0.035026</izz>
+          </inertia>
+        </inertial>
+        <collision name="base_link_collision">
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/benedixx/catkin_ws/src/FIRA-Air-Simulator/gate_system/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <friction>
+              <ode>
+                <mu>500</mu>
+                <mu2>500</mu2>
+              </ode>
+              <torsional>
+                <ode />
+              </torsional>
+            </friction>
+            <bounce />
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name="base_link_visual">
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/benedixx/catkin_ws/src/FIRA-Air-Simulator/gate_system/meshes/base_link.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/White</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name="rotating_joint" type="revolute">
+        <pose relative_to="base_link">1.0311 -2.4707 2.523 1.5708 -0 1.5708</pose>
+        <parent>base_link</parent>
+        <child>rotating_link</child>
+        <axis>
+          <xyz>-1 0 0</xyz>
+          <limit>
+            <effort>0</effort>
+            <velocity>0</velocity>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+        </axis>
+      </joint>
+      <link name="rotating_link">
+        <pose relative_to="rotating_joint">0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose>0 0.27188 0.062404 0 -0 0</pose>
+          <mass>0.1</mass>
+          <inertia>
+            <ixx>0.037259</ixx>
+            <ixy>2.1212e-19</ixy>
+            <ixz>8.3317e-20</ixz>
+            <iyy>0.0024207</iyy>
+            <iyz>-0.0078999</iyz>
+            <izz>0.035026</izz>
+          </inertia>
+        </inertial>
+        <collision name="rotating_link_collision">
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/benedixx/catkin_ws/src/FIRA-Air-Simulator/gate_system/meshes/rotating_link.STL</uri>
+            </mesh>
+          </geometry>
+          <surface>
+            <contact>
+              <ode />
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.2</mu>
+                <mu2>0.2</mu2>
+              </ode>
+              <torsional>
+                <ode />
+              </torsional>
+            </friction>
+            <bounce />
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name="rotating_link_visual">
+          <pose>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/home/benedixx/catkin_ws/src/FIRA-Air-Simulator/gate_system/meshes/rotating_link.STL</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Orange</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <gravity>0</gravity>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose>-1 -3 0 0 -0 0</pose>
+    </model>
+    <model name="take_off_marker_clone">
+      <link name="take_off_marker_link">
+        <pose>0 0 0.03 0 -0 0</pose>
+        <self_collide>0</self_collide>
+        <kinematic>0</kinematic>
+        <gravity>1</gravity>
+        <inertial>
+          <mass>1</mass>
+          <pose>0 0 0.03 0 -0 0</pose>
+          <inertia>
+            <ixx>1</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1</iyy>
+            <iyz>0</iyz>
+            <izz>1</izz>
+          </inertia>
+        </inertial>
+        <visual name="take_off_marker_visual">
+          <geometry>
+            <mesh>
+              <uri>model://H.dae</uri>
+            </mesh>
+          </geometry>
+          <pose>0 0 0 0 -0 0</pose>
+          <cast_shadows>1</cast_shadows>
+          <transparency>0</transparency>
+          <material>
+            <shader type="vertex">
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+        </visual>
+        <enable_wind>0</enable_wind>
+      </link>
+      <static>1</static>
+      <allow_auto_disable>1</allow_auto_disable>
+      <pose>0.045266 -7.55421 0 0 -0 0</pose>
+    </model>
+  </world>
+</sdf>
