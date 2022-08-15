@@ -44,14 +44,18 @@ def gerbang():
         j = drone.deteksi_jarum()
         c = drone.compass
         a = drone.deteksi_gerbang_tech()
+        geser = a[2]
 
-        print(a[2])
-        
-        if 1.3 > sonar > 0.9 :
+        s_y = geser - 320
+        sr_y = -s_y/80
+        drone.gerak(0,sr_y)
+        print("Fixing y", geser)
+        rospy.sleep(0.1)
+        if 315 > geser > 325 :
             drone.gerak(0,0)
-        else:
-            s_x = sonar - 1.1
-            drone.gerak(s_x, 0)
+            print("Y fixed")
+
+
         vyaw = -c*50
         if abs(c) < 0.02 :
             vyaw = 0
@@ -63,6 +67,17 @@ def gerbang():
             vz = 0
         drone.gerak_z(vz)
         if 41 > ang > 38 :
+            drone.gerak(2,0)
+            drone.yaw(0)
+            rospy.sleep(1.75)
+            drone.set_alt(4)
+            drone.gerak(-2,0)
+            rospy.sleep(1.75)
+            drone.set_alt(2)
+            drone.diam()
+            rospy.sleep(0.3)
+            break
+        else :
             drone.diam()
 
 if __name__ == '__main__' :
