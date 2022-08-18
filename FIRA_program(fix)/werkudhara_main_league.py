@@ -51,9 +51,11 @@ if __name__ == '__main__' :
                 if abs(error) < 3 :
                     vy = 0
                     vx = max_spd
-                elif abs(error) < 10 :
+                elif abs(error) < 8 :
+                    vy = -(error/850)
+                elif abs(error) < 15 :
                     vy = -(error/600)
-                    vx = (max_spd*0.75)-(max_spd*abs(error)/1000)
+                    vx = (max_spd*0.8)-(max_spd*abs(error)/1000)
                 elif abs(error) < 30 :
                     vy = -(error/500)
                     vx = (max_spd*0.75)-(max_spd*abs(error)/800)
@@ -77,7 +79,7 @@ if __name__ == '__main__' :
                 vx = vx
             elif abs(ang) < 10:
                 vyaw = -(ang*(2))
-                vx = vx-(vx*abs(ang)/600)
+                vx = vx-(vx*abs(ang)/650)
             elif abs(ang) < 25:
                 vyaw = -(ang*(2))
                 vx = vx-(vx*abs(ang)/450)
@@ -134,7 +136,7 @@ if __name__ == '__main__' :
             #print("v")
             if kotak == 1:
                 #rint("kotak")
-                drone.gerak_z(0.05)
+                drone.gerak_z(0.1)
                 vx = selisih2_y/400
                 if abs(selisih2_x) < 6 :
                     vx = 0
@@ -155,7 +157,7 @@ if __name__ == '__main__' :
                 if abs(selisih2_x) < 8 :
                     vy = 0
                 if abs(selisih2_x) < 11 and abs(selisih2_y) < 11 :
-                    drone.gerak_z(0.05)
+                    drone.gerak_z(0.1)
                     
             drone.gerak(vx,vy)
         print("vx :",format(vx, '.3f'),"|| vy :",format(vy, '.3f'), "|| vz :",format(vz, '.3f'),end='\r')
