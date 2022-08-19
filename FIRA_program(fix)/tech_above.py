@@ -111,7 +111,14 @@ def last_lap():
             print("GO!!!!")
             drone.velocity(5,0)
             drone.yaw(0)
-            rospy.sleep(3)
+            rospy.sleep(2)
+            drone.set_alt(4)
+            drone.velocity(-2,0)
+            rospy.sleep(2)
+            drone.set_alt(2)
+            drone.stop()
+            drone.velocity(-2,0)
+            rospy.sleep(1.5)
             break
         else :
             drone.stop()
